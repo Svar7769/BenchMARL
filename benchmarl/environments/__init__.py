@@ -32,6 +32,8 @@ from .pettingzoo.simple_tag import TaskConfig as SimpleTagConfig
 from .pettingzoo.simple_world_comm import TaskConfig as SimpleWorldComm
 from .pettingzoo.waterworld import TaskConfig as WaterworldConfig
 from .vmas.balance import TaskConfig as BalanceConfig
+from .vmas.ball_passage import TaskConfig as BallPassageConfig
+from .vmas.ball_trajectory import TaskConfig as BallTrajectoryConfig
 from .vmas.dispersion import TaskConfig as DispersionConfig
 from .vmas.dropout import TaskConfig as DropoutConfig
 from .vmas.give_way import TaskConfig as GiveWayConfig
@@ -58,6 +60,8 @@ from .vmas.wind_flocking import TaskConfig as WindFlockingConfig
 # This feature is optional.
 _task_class_registry = {
     "vmas_balance_config": BalanceConfig,
+    "vmas_ball_passage_config": BallPassageConfig,
+    "vmas_ball_trajectory_config": BallTrajectoryConfig,
     "vmas_sampling_config": SamplingConfig,
     "vmas_navigation_config": NavigationConfig,
     "vmas_transport_config": TransportConfig,

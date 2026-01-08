@@ -18,6 +18,8 @@ class VmasTask(Task):
     """Enum for VMAS tasks."""
 
     BALANCE = None
+    BALL_PASSAGE = None
+    BALL_TRAJECTORY = None
     SAMPLING = None
     NAVIGATION = None
     TRANSPORT = None
@@ -35,6 +37,7 @@ class VmasTask(Task):
     SIMPLE_SPREAD = None
     SIMPLE_TAG = None
     SIMPLE_WORLD_COMM = None
+
 
     def get_env_fun(
         self,
