@@ -22,6 +22,7 @@ class VmasTask(Task):
     BALL_TRAJECTORY = None
     BUZZ_WIRE = None
     DISCOVERY = None
+    FOOTBALL = None
     SAMPLING = None
     NAVIGATION = None
     TRANSPORT = None

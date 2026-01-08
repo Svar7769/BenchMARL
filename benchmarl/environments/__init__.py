@@ -36,6 +36,7 @@ from .vmas.ball_passage import TaskConfig as BallPassageConfig
 from .vmas.ball_trajectory import TaskConfig as BallTrajectoryConfig
 from .vmas.buzz_wire import TaskConfig as BuzzWireConfig
 from .vmas.discovery import TaskConfig as DiscoveryConfig
+from .vmas.football import TaskConfig as FootballConfig
 from .vmas.dispersion import TaskConfig as DispersionConfig
 from .vmas.dropout import TaskConfig as DropoutConfig
 from .vmas.give_way import TaskConfig as GiveWayConfig
@@ -66,6 +67,7 @@ _task_class_registry = {
     "vmas_ball_trajectory_config": BallTrajectoryConfig,
     "vmas_buzz_wire_config": BuzzWireConfig,
     "vmas_discovery_config": DiscoveryConfig,
+    "vmas_football_config": FootballConfig,
     "vmas_sampling_config": SamplingConfig,
     "vmas_navigation_config": NavigationConfig,
     "vmas_transport_config": TransportConfig,
