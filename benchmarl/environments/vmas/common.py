@@ -20,6 +20,8 @@ class VmasTask(Task):
     BALANCE = None
     BALL_PASSAGE = None
     BALL_TRAJECTORY = None
+    BUZZ_WIRE = None
+    DISCOVERY = None
     SAMPLING = None
     NAVIGATION = None
     TRANSPORT = None

@@ -34,6 +34,8 @@ from .pettingzoo.waterworld import TaskConfig as WaterworldConfig
 from .vmas.balance import TaskConfig as BalanceConfig
 from .vmas.ball_passage import TaskConfig as BallPassageConfig
 from .vmas.ball_trajectory import TaskConfig as BallTrajectoryConfig
+from .vmas.buzz_wire import TaskConfig as BuzzWireConfig
+from .vmas.discovery import TaskConfig as DiscoveryConfig
 from .vmas.dispersion import TaskConfig as DispersionConfig
 from .vmas.dropout import TaskConfig as DropoutConfig
 from .vmas.give_way import TaskConfig as GiveWayConfig
@@ -62,6 +64,8 @@ _task_class_registry = {
     "vmas_balance_config": BalanceConfig,
     "vmas_ball_passage_config": BallPassageConfig,
     "vmas_ball_trajectory_config": BallTrajectoryConfig,
+    "vmas_buzz_wire_config": BuzzWireConfig,
+    "vmas_discovery_config": DiscoveryConfig,
     "vmas_sampling_config": SamplingConfig,
     "vmas_navigation_config": NavigationConfig,
     "vmas_transport_config": TransportConfig,
