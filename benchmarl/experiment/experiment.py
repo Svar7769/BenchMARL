@@ -640,6 +640,33 @@ class Experiment(CallbackNotifier):
         subdata = self.replay_buffers[group].sample()
         loss_vals = self.losses[group](subdata)
         training_td = loss_vals.detach()
+
+        # Optional aux losses from model (no-op if keys/attrs absent)
+        try:
+            policy = self.group_policies.get(group)
+            module = getattr(policy, "module", policy)
+            role_coef = getattr(module, "role_balance_coef", 1.0)
+            switch_coef = getattr(module, "switching_coef", 1.0)
+            role_key = ("aux", "role_balance_loss")
+            switch_key = ("aux", "switching_loss")
+            role_loss = (
+                loss_vals.get(role_key, None)
+                if hasattr(loss_vals, "get") and loss_vals.has(role_key)
+                else (subdata.get(role_key, None) if subdata.has(role_key) else None)
+            )
+            switch_loss = (
+                loss_vals.get(switch_key, None)
+                if hasattr(loss_vals, "get") and loss_vals.has(switch_key)
+                else (subdata.get(switch_key, None) if subdata.has(switch_key) else None)
+            )
+            if "loss_objective" in loss_vals.keys(True):
+                if role_loss is not None:
+                    loss_vals.set("loss_objective", loss_vals["loss_objective"] + role_coef * role_loss)
+                if switch_loss is not None:
+                    loss_vals.set("loss_objective", loss_vals["loss_objective"] + switch_coef * switch_loss)
+        except Exception:
+            pass
+
         loss_vals = self.algorithm.process_loss_vals(group, loss_vals)
 
         for loss_name, loss_value in loss_vals.items():
@@ -660,6 +687,15 @@ class Experiment(CallbackNotifier):
         self.replay_buffers[group].update_tensordict_priority(subdata)
         if self.target_updaters[group] is not None:
             self.target_updaters[group].step()
+
+        # Optional routing temperature annealing hook
+        try:
+            policy = self.group_policies.get(group)
+            module = getattr(policy, "module", policy)
+            if hasattr(module, "step_tau"):
+                module.step_tau()
+        except Exception:
+            pass
 
         callback_loss = self._on_train_step(subdata, group)
         if callback_loss is not None:
